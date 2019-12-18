@@ -171,11 +171,14 @@ class EB_GAMESS_minus_US(EasyBlock):
             "please hit <return> to compile the GAMESS source code activator": '',
             "please hit <return> to set up your network for Linux clusters.": '',
             "communication library ('sockets' or 'mpi')? ": self.cfg['ddi_comm'],
+            "communication library ('serial','sockets' or 'mpi' or 'mixed')? ": self.cfg['ddi_comm'], # changed in gamess-20190930-R2
             "Enter MPI library (impi, mvapich2, mpt, sockets):": mpilib,
             "Enter MPI library (impi, mpich, mpich2, mvapich2, mpt, sockets):": mpilib,  # changed in gamess-20170420R1
             "Please enter your %s's location: " % mpilib: mpilib_root,
             "Do you want to try LIBCCHEM?  (yes/no): ": 'no',
             "Enter full path to OpenBLAS libraries (without 'lib' subdirectory):": mathlib_root,
+            "enter this full pathname: ": ''.join([mathlib_root, '/lib']), # changed in gamess-20190930-R2
+            "Optional: Build Michigan State University CCT3 & CCSD3A methods?  (yes/no): ": 'no', # changed in gamess-20190930-R2
         }
         stdqa = {
             r"GAMESS directory\? \[.*\] ": self.builddir,
