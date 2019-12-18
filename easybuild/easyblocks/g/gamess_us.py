@@ -198,6 +198,7 @@ class EB_GAMESS_minus_US(EasyBlock):
             for line in fileinput.input(rungms, inplace=1, backup='.orig'):
                 line = re.sub(r"^(\s*set\s*TARGET)=.*", r"\1=%s" % self.cfg['ddi_comm'], line)
                 line = re.sub(r"^(\s*set\s*GMSPATH)=.*", r"\1=%s\n%s" % (self.installdir, extra_gmspath_lines), line)
+                line = re.sub(r"^(\s*set\s*GMS_OPENMP)=.*", r"\1=%s" % "true", line) # changed in gamess-20190930-R2 for OpenBLAS support
                 line = re.sub(r"(null\) set VERNO)=.*", r"\1=%s" % self.version, line)
                 line = re.sub(r"^(\s*set DDI_MPI_CHOICE)=.*", r"\1=%s" % mpilib, line)
                 line = re.sub(r"^(\s*set DDI_MPI_ROOT)=.*%s.*" % mpilib.lower(), r"\1=%s" % mpilib_path, line)
